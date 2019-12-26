@@ -5,6 +5,7 @@ import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs';
 import { Consulta } from '../consulta.type';
 import { stringify } from 'querystring';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-agenda-consultas',
@@ -13,42 +14,37 @@ import { stringify } from 'querystring';
 })
 export class AgendaConsultasComponent implements OnInit {
 
-  Model:Consulta[];
-
   constructor(private consultaService: ConsultaService) { }
 
   displayedColumns = ['paciente', 'dataNascimento', 'dataInicial', 'dataFinal', 'observacoes', 'delete'];
-  dataSource = new PostDataSource(this.consultaService);
+  dataSource : MatTableDataSource<any>;
 
   ngOnInit() {
-    console.log(this.obterTodasConsultas());
+    this.obterTodasConsultas();
   }
 
   obterTodasConsultas(): void {
-        this.consultaService
-          .getAll()
-          .subscribe(data => {
-            this.Model = data;
-            console.log(data);
-          });
-      }
-
-  deletarConsulta(paciente): void{
-        this.consultaService.deleteConsulta(paciente).subscribe();
-        this.dataSource = new PostDataSource(this.consultaService);
+        this.consultaService.getAll().subscribe(
+      list =>{
+        let array = list.map(item => item);
+        this.dataSource = new MatTableDataSource(array);
+      }
+    );
   }
 
-}
-
-export class PostDataSource extends DataSource<any> {
-  constructor(private consultaService: ConsultaService) {
-    super();
+  deletarConsulta(nome): void{
+        this.consultaService.deleteConsulta(nome).subscribe();
+        const itemIndex = this.dataSource.data.findIndex(obj => obj.paciente == nome);
+        this.dataSource.data.splice(itemIndex, 1);
+        this.dataSource._updateChangeSubscription();
   }
 
-  connect(): Observable<Consulta[]> {
-    return this.consultaService.getAll();
-  }
-
-  disconnect() {
+  isEmpty(dataSource): boolean{
+    if(dataSource.data.length==0){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 }
