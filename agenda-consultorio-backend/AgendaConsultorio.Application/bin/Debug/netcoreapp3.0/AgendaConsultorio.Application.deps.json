@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "AgendaConsultorio.Application/1.0.0": {
+        "dependencies": {
+          "AgendaConsultorio.Domain": "1.0.0"
+        },
+        "runtime": {
+          "AgendaConsultorio.Application.dll": {}
+        }
+      },
+      "AgendaConsultorio.Domain/1.0.0": {
+        "runtime": {
+          "AgendaConsultorio.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AgendaConsultorio.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AgendaConsultorio.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

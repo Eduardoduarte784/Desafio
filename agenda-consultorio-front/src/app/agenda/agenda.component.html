@@ -1,0 +1,26 @@
+<table align="center" style="width: 99%; background-color: white;">
+    <tr>
+        <th>Paciente</th>
+        <th>Data de Nascimento</th>
+        <th>Data Inicial</th>
+        <th>Data Final</th>
+        <th>Observações</th>
+    </tr>
+    <tr *ngFor="let cs of Model">
+        <td>
+            {{cs.paciente}}
+        </td>
+        <td>
+            {{cs.dataNascimento}}
+        </td>
+        <td>
+            {{cs.dataInicial}}
+        </td>
+        <td>
+            {{cs.dataFinal}}
+        </td>
+        <td>
+            {{cs.observacoes}}
+        </td>
+    </tr>   
+</table>

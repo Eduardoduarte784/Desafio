@@ -1,0 +1,331 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Api\\AgendaConsultorio.Api.csproj": {}
+  },
+  "projects": {
+    "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Api\\AgendaConsultorio.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Api\\AgendaConsultorio.Api.csproj",
+        "projectName": "AgendaConsultorio.Api",
+        "projectPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Api\\AgendaConsultorio.Api.csproj",
+        "packagesPath": "C:\\Users\\NOTE 159\\.nuget\\packages\\",
+        "outputPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\NOTE 159\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Application\\AgendaConsultorio.Application.csproj": {
+                "projectPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Application\\AgendaConsultorio.Application.csproj"
+              },
+              "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data.Migrations\\AgendaConsultorio.Infra.Data.Migrations.csproj": {
+                "projectPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data.Migrations\\AgendaConsultorio.Infra.Data.Migrations.csproj"
+              },
+              "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data\\AgendaConsultorio.Infra.Data.csproj": {
+                "projectPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data\\AgendaConsultorio.Infra.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Application\\AgendaConsultorio.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Application\\AgendaConsultorio.Application.csproj",
+        "projectName": "AgendaConsultorio.Application",
+        "projectPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Application\\AgendaConsultorio.Application.csproj",
+        "packagesPath": "C:\\Users\\NOTE 159\\.nuget\\packages\\",
+        "outputPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\NOTE 159\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Domain\\AgendaConsultorio.Domain.csproj": {
+                "projectPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Domain\\AgendaConsultorio.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Domain\\AgendaConsultorio.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Domain\\AgendaConsultorio.Domain.csproj",
+        "projectName": "AgendaConsultorio.Domain",
+        "projectPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Domain\\AgendaConsultorio.Domain.csproj",
+        "packagesPath": "C:\\Users\\NOTE 159\\.nuget\\packages\\",
+        "outputPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\NOTE 159\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data.Migrations\\AgendaConsultorio.Infra.Data.Migrations.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data.Migrations\\AgendaConsultorio.Infra.Data.Migrations.csproj",
+        "projectName": "AgendaConsultorio.Infra.Data.Migrations",
+        "projectPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data.Migrations\\AgendaConsultorio.Infra.Data.Migrations.csproj",
+        "packagesPath": "C:\\Users\\NOTE 159\\.nuget\\packages\\",
+        "outputPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data.Migrations\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\NOTE 159\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data\\AgendaConsultorio.Infra.Data.csproj": {
+                "projectPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data\\AgendaConsultorio.Infra.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data\\AgendaConsultorio.Infra.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data\\AgendaConsultorio.Infra.Data.csproj",
+        "projectName": "AgendaConsultorio.Infra.Data",
+        "projectPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data\\AgendaConsultorio.Infra.Data.csproj",
+        "packagesPath": "C:\\Users\\NOTE 159\\.nuget\\packages\\",
+        "outputPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Infra.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\NOTE 159\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Domain\\AgendaConsultorio.Domain.csproj": {
+                "projectPath": "C:\\repositorio\\Desafio\\agenda-consultorio-backend\\AgendaConsultorio.Domain\\AgendaConsultorio.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

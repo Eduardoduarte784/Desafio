@@ -1,0 +1,11 @@
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Application\obj\Debug\netcoreapp3.0\AgendaConsultorio.Application.csprojAssemblyReference.cache
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Application\obj\Debug\netcoreapp3.0\AgendaConsultorio.Application.AssemblyInfoInputs.cache
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Application\obj\Debug\netcoreapp3.0\AgendaConsultorio.Application.AssemblyInfo.cs
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Application\bin\Debug\netcoreapp3.0\AgendaConsultorio.Application.deps.json
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Application\bin\Debug\netcoreapp3.0\AgendaConsultorio.Application.dll
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Application\bin\Debug\netcoreapp3.0\AgendaConsultorio.Application.pdb
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Application\bin\Debug\netcoreapp3.0\AgendaConsultorio.Domain.dll
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Application\bin\Debug\netcoreapp3.0\AgendaConsultorio.Domain.pdb
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Application\obj\Debug\netcoreapp3.0\AgendaConsultorio.Application.csproj.CopyComplete
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Application\obj\Debug\netcoreapp3.0\AgendaConsultorio.Application.dll
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Application\obj\Debug\netcoreapp3.0\AgendaConsultorio.Application.pdb

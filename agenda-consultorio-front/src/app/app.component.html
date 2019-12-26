@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container style="min-height: 593px;">
+  <mat-sidenav mode="side" opened style="background-color:black;" #sidenav>
+    <mat-nav-list style="width: 25vh;">
+
+      <a mat-list-item [routerLink]="" style="color: white"> Consultas </a>
+      <a mat-list-item (click)="sidenav.toggle()" mat-list-item style="color: white">Close</a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content style="min-height: 593px; background-color: rgb(247, 247, 247);">
+    <div style="min-height: 593px;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,13 @@
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\bin\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.Migrations.deps.json
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\bin\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.Migrations.dll
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\bin\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.Migrations.pdb
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\obj\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.Migrations.csprojAssemblyReference.cache
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\obj\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.Migrations.AssemblyInfoInputs.cache
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\obj\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.Migrations.AssemblyInfo.cs
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\obj\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.Migrations.dll
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\obj\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.Migrations.pdb
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\bin\Debug\netcoreapp3.0\AgendaConsultorio.Domain.dll
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\bin\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.dll
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\bin\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.pdb
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\bin\Debug\netcoreapp3.0\AgendaConsultorio.Domain.pdb
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Infra.Data.Migrations\obj\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.Migrations.csproj.CopyComplete

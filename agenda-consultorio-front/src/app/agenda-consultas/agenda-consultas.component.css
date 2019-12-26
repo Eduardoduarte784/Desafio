@@ -1,0 +1,30 @@
+  .card {
+    min-width: 80%;
+    min-height: 561px;
+  }
+
+  .example-container {
+   
+    min-height: 425px;
+    min-width: 100%;
+  }
+
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+
+  .mat-header-cell{
+  height: 80px;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+}
+
+  a {
+    cursor: pointer;
+  }
+
+  #posicionar{
+    position:absolute; top:88.5%; left:90%;
+  }
