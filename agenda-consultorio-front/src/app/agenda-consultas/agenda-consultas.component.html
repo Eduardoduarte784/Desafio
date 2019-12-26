@@ -1,9 +1,10 @@
 <mat-card class="card">
-    <mat-card-title>
-        <h3>Agenda</h3>
-    </mat-card-title>
+    
+    <h2>Agenda</h2>
+    
     <mat-card-content>
-        <h2>teste misera</h2>
+        <a>Agendamento de Consulta</a>
+    <br><br>
         <div class="example-container mat-elevation-z8">
             <mat-table #table [dataSource]="dataSource">
                 <ng-container matColumnDef="paciente">
@@ -14,16 +15,16 @@
                     <mat-header-cell *matHeaderCellDef> Data Nascimento </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.dataNascimento}} </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="dataInicial">
-                    <mat-header-cell *matHeaderCellDef> Data Inicial </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.dataInicial | date: 'HH:mm'}} do dia {{element.dataInicial | date: 'dd/MM/yyyy'}}</mat-cell>
+                <ng-container  matColumnDef="dataInicial">
+                    <mat-header-cell  *matHeaderCellDef> Data Inicial </mat-header-cell>
+                    <mat-cell  *matCellDef="let element"> {{element.dataInicial | date: 'HH:mm'}} do dia {{element.dataInicial | date: 'dd/MM/yyyy'}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="dataFinal">
                     <mat-header-cell *matHeaderCellDef> Data Final </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.dataFinal | date: 'HH:mm'}} do dia {{element.dataFinal | date: 'dd/MM/yyyy'}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="observacoes">
-                    <mat-header-cell *matHeaderCellDef> Observacoes </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef> Observações </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.observacoes}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="delete">
@@ -34,8 +35,16 @@
                         </button>
                     </mat-cell>
                 </ng-container>
+                <ng-container matColumnDef="noData">
+                    <mat-footer-cell *matFooterCellDef coslpan="6"> Sem dados </mat-footer-cell>
+                </ng-container>
+                <ng-container matColumnDef="loading">
+                    <mat-footer-cell *matFooterCellDef coslpan="6"> Carregando dados... </mat-footer-cell>
+                </ng-container>
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide' : dataSource == null || !isEmpty(dataSource)}"></mat-footer-row>
+                <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide' : dataSource != null}"></mat-footer-row>
             </mat-table>
             <div id="posicionar">  
                 <button mat-button style="background-color: blue; color: white;">Adicionar</button>
