@@ -60,3 +60,7 @@ C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Api\bin\Debu
 C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Api\bin\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.Migrations.dll
 C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Api\bin\Debug\netcoreapp3.0\AgendaConsultorio.Infra.Data.Migrations.pdb
 C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Api\obj\Debug\netcoreapp3.0\AgendaConsultorio.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Api\bin\Debug\netcoreapp3.0\System.Net.Http.Formatting.dll
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Api\bin\Debug\netcoreapp3.0\System.Web.Http.dll
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Api\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+C:\repositorio\Desafio\agenda-consultorio-backend\AgendaConsultorio.Api\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll

@@ -26,7 +26,13 @@ namespace AgendaConsultorio.Infra.Data.Repository
             return this.context.Set<Consulta>().FirstOrDefault(x => x.Paciente == paciente);
         }
 
-        public void DeletarConsulta(Consulta consultaParametro)
+        public void InserirConsulta(Consulta consultaParametro)
+        {
+            this.context.Set<Consulta>().Add(consultaParametro);
+            this.context.SaveChanges();
+        }
+
+            public void DeletarConsulta(Consulta consultaParametro)
         {
             this.context.Set<Consulta>().Remove(consultaParametro);
             this.context.SaveChanges();

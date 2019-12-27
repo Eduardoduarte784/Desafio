@@ -1,5 +1,6 @@
 ﻿using AgendaConsultorio.Application.Service.Interface;
 using AgendaConsultorio.Application.ViewModel;
+using AgendaConsultorio.Domain.Entity;
 using AgendaConsultorio.Domain.Repository;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,20 @@ namespace AgendaConsultorio.Application.Service
                 listaConsultaViewModel.Add(consultaViewModel);
             }
             return listaConsultaViewModel;
+        }
+
+        public string InsereConsultas(ConsultaViewModel consultaParametro)
+        {
+            //     if (consultaRepository.BuscarPeloPaciente(consultaParametro.Paciente) == null)
+            //     {
+            var consulta = new Consulta(consultaParametro.Paciente, consultaParametro.DataNascimento, consultaParametro.DataInicial, consultaParametro.DataFinal, consultaParametro.Observacoes);
+                consultaRepository.InserirConsulta(consulta);
+                return "Inserido com sucesso!";
+       //     }
+      //      else
+     //       {
+       //         return "Consulta já existe na base de dados";
+      //      }
         }
 
         public string DeletaConsultas(string pacienteParametro)
