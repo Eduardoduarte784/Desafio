@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MaterialModule} from './material.module';
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +23,7 @@ import {ConsultaService} from './consulta.service';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    FormsModule,
   ],
   providers: [ConsultaService],
   bootstrap: [AppComponent]

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { ConsultaService }from '../consulta.service';
 import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs';
 import { Consulta } from '../consulta.type';
 import { stringify } from 'querystring';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 
 @Component({
   selector: 'app-agenda-consultas',
@@ -18,6 +18,9 @@ export class AgendaConsultasComponent implements OnInit {
 
   displayedColumns = ['paciente', 'dataNascimento', 'dataInicial', 'dataFinal', 'observacoes', 'delete'];
   dataSource : MatTableDataSource<any>;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  searchKey: string;
 
   ngOnInit() {
     this.obterTodasConsultas();
@@ -28,8 +31,9 @@ export class AgendaConsultasComponent implements OnInit {
       list =>{
         let array = list.map(item => item);
         this.dataSource = new MatTableDataSource(array);
-      }
-    );
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
   }
 
   deletarConsulta(nome): void{
@@ -46,5 +50,16 @@ export class AgendaConsultasComponent implements OnInit {
     else{
       return false;
     }
+  }
+
+  onSearchClear(): void{
+    this.searchKey= "";
+    this.applyFilter();
+  }
+
+  
+  applyFilter(): void{
+    this.dataSource.filterPredicate = (data, filter) => (data.paciente.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
+    this.dataSource.filter = this.searchKey;
   }
 }

@@ -1,30 +1,38 @@
 <mat-card class="card">
     
-    <h2>Agenda</h2>
+    <h2>Agendamento de Consulta</h2>
     
-    <mat-card-content>
-        <a>Agendamento de Consulta</a>
+    <mat-card-content>  
+            <button mat-raised-button style="background-color: blue; color: white;">
+                <mat-icon>add</mat-icon> Agendar
+            </button>
+            <mat-form-field class="search-form-field" floatLabel="never">
+                <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+                <button mat-button matSuffix mat-icon-button aria-label="clear" *ngIf="searchKey" (click)="onSearchClear()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
     <br><br>
         <div class="example-container mat-elevation-z8">
-            <mat-table #table [dataSource]="dataSource">
+            <mat-table #table [dataSource]="dataSource" matSort>
                 <ng-container matColumnDef="paciente">
-                    <mat-header-cell *matHeaderCellDef> Paciente </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Paciente </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.paciente}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="dataNascimento">
-                    <mat-header-cell *matHeaderCellDef> Data Nascimento </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Data Nascimento </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.dataNascimento}} </mat-cell>
                 </ng-container>
                 <ng-container  matColumnDef="dataInicial">
-                    <mat-header-cell  *matHeaderCellDef> Data Inicial </mat-header-cell>
+                    <mat-header-cell  *matHeaderCellDef mat-sort-header> Data Inicial </mat-header-cell>
                     <mat-cell  *matCellDef="let element"> {{element.dataInicial | date: 'HH:mm'}} do dia {{element.dataInicial | date: 'dd/MM/yyyy'}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="dataFinal">
-                    <mat-header-cell *matHeaderCellDef> Data Final </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Data Final </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.dataFinal | date: 'HH:mm'}} do dia {{element.dataFinal | date: 'dd/MM/yyyy'}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="observacoes">
-                    <mat-header-cell *matHeaderCellDef> Observações </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Observações </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.observacoes}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="delete">
@@ -46,9 +54,7 @@
                 <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide' : dataSource == null || !isEmpty(dataSource)}"></mat-footer-row>
                 <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide' : dataSource != null}"></mat-footer-row>
             </mat-table>
-            <div id="posicionar">  
-                <button mat-button style="background-color: blue; color: white;">Adicionar</button>
-            </div>
+            <mat-paginator [pageSizeOptions]="[6, 10, 25, 100]" [pageSize]="6" showFirstLastButtons></mat-paginator>
         </div>
     </mat-card-content>
 </mat-card>
