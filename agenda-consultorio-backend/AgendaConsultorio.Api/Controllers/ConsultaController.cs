@@ -5,6 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http;
+using FromBodyAttribute = Microsoft.AspNetCore.Mvc.FromBodyAttribute;
+using HttpDeleteAttribute = Microsoft.AspNetCore.Mvc.HttpDeleteAttribute;
+using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
+using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace AgendaConsultorio.Api.Controllers
 {
@@ -25,8 +31,14 @@ namespace AgendaConsultorio.Api.Controllers
             return lista;
         }
 
+        [HttpPost]
+        public string InsereConsulta([FromBody]ConsultaViewModel consultaParametro)
+        {
+            return consultaService.InsereConsultas(consultaParametro);
+        }
+
         [HttpDelete("{pacienteParametro}")]
-        public string DeletaEstoque(string pacienteParametro)
+        public string DeletaConsulta(string pacienteParametro)
                 {
             return consultaService.DeletaConsultas(pacienteParametro);
         }

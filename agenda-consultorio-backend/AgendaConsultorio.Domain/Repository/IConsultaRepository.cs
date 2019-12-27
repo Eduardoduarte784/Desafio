@@ -9,6 +9,7 @@ namespace AgendaConsultorio.Domain.Repository
     {
         public IEnumerable<Consulta> ObterConsultas();
         public Consulta BuscarPeloPaciente(string paciente);
+        public void InserirConsulta(Consulta consultaParametro);
         public void DeletarConsulta(Consulta consultaParametro);
     }
 }
