@@ -10,14 +10,17 @@
   <mat-sidenav mode="side" opened style="background-color:black;" #sidenav>
     <mat-nav-list style="width: 25vh;">
 
-      <a mat-list-item [routerLink]="" style="color: white"> Consultas </a>
+      <a mat-list-item routerLink="" style="color: white"> Consultas </a>
+      <a mat-list-item routerLink="/cadastro" style="color: white"> Agendar </a>
       <a mat-list-item (click)="sidenav.toggle()" mat-list-item style="color: white">Close</a>
 
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content style="min-height: 593px; background-color: rgb(247, 247, 247);">
     <div style="min-height: 593px;">
-      <router-outlet></router-outlet>
+      <mat-card class="card">
+        <router-outlet></router-outlet>
+      </mat-card>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
