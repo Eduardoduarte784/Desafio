@@ -29,16 +29,53 @@ namespace AgendaConsultorio.Application.Service
 
         public string InsereConsultas(ConsultaViewModel consultaParametro)
         {
-            //     if (consultaRepository.BuscarPeloPaciente(consultaParametro.Paciente) == null)
-            //     {
-            var consulta = new Consulta(consultaParametro.Paciente, consultaParametro.DataNascimento, consultaParametro.DataInicial, consultaParametro.DataFinal, consultaParametro.Observacoes);
-                consultaRepository.InserirConsulta(consulta);
-                return "Inserido com sucesso!";
-       //     }
-      //      else
-     //       {
-       //         return "Consulta já existe na base de dados";
-      //      }
+            if (consultaParametro.DataInicial < consultaParametro.DataFinal)
+            {
+                var listaConsulta = consultaRepository.ObterConsultas();
+                bool datasDistintas;
+                bool horarioVago = true;
+                foreach (var cs in listaConsulta)
+                {
+                    datasDistintas = (consultaParametro.DataInicial.Date > cs.DataFinal.Date) || (consultaParametro.DataFinal.Date < cs.DataInicial.Date);
+                    if (!datasDistintas)
+                    {
+                        if (consultaParametro.DataInicial.Date == cs.DataFinal.Date && consultaParametro.DataFinal.Date == cs.DataInicial.Date)
+                        {
+                            horarioVago = ((consultaParametro.DataInicial.TimeOfDay >= cs.DataFinal.TimeOfDay) || (consultaParametro.DataFinal.TimeOfDay <= cs.DataInicial.TimeOfDay));
+                        }
+                        else
+                        {
+                            if (consultaParametro.DataInicial.Date == cs.DataFinal.Date)
+                            {
+                                horarioVago = consultaParametro.DataInicial.TimeOfDay >= cs.DataFinal.TimeOfDay;
+                            }
+                            else
+                            {
+                                if (consultaParametro.DataFinal.Date == cs.DataInicial.Date)
+                                {
+                                    horarioVago = consultaParametro.DataFinal.TimeOfDay <= cs.DataInicial.TimeOfDay;
+                                }
+                                else
+                                {
+                                    horarioVago = false;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (horarioVago)
+                {
+                    var consulta = new Consulta(consultaParametro.Paciente, consultaParametro.DataNascimento, consultaParametro.DataInicial, consultaParametro.DataFinal, consultaParametro.Observacoes);
+                    consultaRepository.InserirConsulta(consulta);
+                    return "Inserido com sucesso!";
+                } else {
+                    return "Horário ocupado!";
+                }
+            }
+            else
+            {
+                return "A Data Inicial não pode ser menor do que a Data Final";
+            }
         }
 
         public string DeletaConsultas(string pacienteParametro)

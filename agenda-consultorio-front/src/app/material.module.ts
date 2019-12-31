@@ -11,7 +11,10 @@ import {
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
-    MatInputModule } from  '@angular/material';
+    MatInputModule,
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule } from  '@angular/material';
 
 @NgModule({
   imports: [
@@ -26,6 +29,9 @@ import {
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatSidenavModule,
@@ -39,6 +45,9 @@ import {
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class MaterialModule {}

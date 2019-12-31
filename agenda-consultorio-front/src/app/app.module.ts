@@ -7,14 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AgendaComponent } from './agenda/agenda.component';
+import { AgendaCadastroComponent } from './agenda-cadastro/agenda-cadastro.component';
 import { AgendaConsultasComponent } from './agenda-consultas/agenda-consultas.component';
-import {ConsultaService} from './consulta.service';
+import { ConsultaService } from './consulta.service';
+import { MAT_DATE_LOCALE } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AgendaComponent,
+    AgendaCadastroComponent,
     AgendaConsultasComponent
   ],
   imports: [
@@ -24,8 +25,9 @@ import {ConsultaService} from './consulta.service';
     HttpClientModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
-  providers: [ConsultaService],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'pt-Br'},ConsultaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

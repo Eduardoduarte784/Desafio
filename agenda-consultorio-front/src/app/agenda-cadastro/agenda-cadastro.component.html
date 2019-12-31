@@ -1,0 +1,48 @@
+<h1>Agendamento de Consultas</h1>
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="300px">
+        <mat-grid-tile>
+            <div class = "controles-container">
+                <mat-form-field class="controles-container-full">
+                    <input formControlName="paciente" matInput placeholder="Paciente*">
+                    <mat-error>Este campo é obrigatório</mat-error>
+                </mat-form-field>
+                <mat-form-field class="controles-container-full">
+                    <input formControlName="dataNascimento" matInput placeholder="Data de Nascimento">
+                </mat-form-field>
+                <mat-form-field class="controles-container-full">
+                    <input formControlName="observacoes" matInput placeholder="Observações">
+                </mat-form-field>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class ="controles-container">
+                <mat-form-field class="controles-container-metade">
+                    <input formControlName="dataInicial" matInput [matDatepicker]="picker" placeholder="Data Inicial*">
+                    <mat-error *ngIf="service.form.controls['dataInicial'].errors?.required">Este campo é obrigatório</mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                    <input type="time" formControlName="horaInicial" matInput placeholder="Hora de Início*">
+                    <mat-error *ngIf="service.form.controls['horaInicial'].errors?.required">Este campo é obrigatório</mat-error>
+                    <mat-error *ngIf="service.form.controls['horaInicial'].errors?.horainvalida">Hora Inválida</mat-error>
+                </mat-form-field>
+                <mat-form-field class="controles-container-metade">
+                    <input formControlName="dataFinal" matInput [matDatepicker]="picker1" placeholder="Data Final*">
+                    <mat-error *ngIf="service.form.controls['dataFinal'].errors?.required">Este campo é obrigatório</mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                    <input type="time" formControlName="horaFinal" matInput placeholder="Hora de Término*">
+                    <mat-error *ngIf="service.form.controls['horaFinal'].errors?.required">Este campo é obrigatório</mat-error>
+                </mat-form-field>
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Confirmar</button>
+                    <button mat-raised-button color="warn" (click)="onClear()">Limpar</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

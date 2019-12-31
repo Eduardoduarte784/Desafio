@@ -4,8 +4,7 @@ import { ConsultaService }from '../consulta.service';
 import { DataSource } from '@angular/cdk/table';
 import { Observable } from 'rxjs';
 import { Consulta } from '../consulta.type';
-import { stringify } from 'querystring';
-import { MatTableDataSource, MatSort, MatPaginator, throwMatDialogContentAlreadyAttachedError } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-agenda-consultas',
@@ -21,6 +20,7 @@ export class AgendaConsultasComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   searchKey: string;
+  
 
   ngOnInit() {
     this.obterTodasConsultas();
