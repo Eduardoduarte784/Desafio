@@ -32,35 +32,12 @@ namespace AgendaConsultorio.Application.Service
             if (consultaParametro.DataInicial < consultaParametro.DataFinal)
             {
                 var listaConsulta = consultaRepository.ObterConsultas();
-                bool datasDistintas;
                 bool horarioVago = true;
                 foreach (var cs in listaConsulta)
                 {
-                    datasDistintas = (consultaParametro.DataInicial.Date > cs.DataFinal.Date) || (consultaParametro.DataFinal.Date < cs.DataInicial.Date);
-                    if (!datasDistintas)
+                    if ((consultaParametro.DataInicial < cs.DataFinal) && (consultaParametro.DataFinal > cs.DataInicial))
                     {
-                        if (consultaParametro.DataInicial.Date == cs.DataFinal.Date && consultaParametro.DataFinal.Date == cs.DataInicial.Date)
-                        {
-                            horarioVago = ((consultaParametro.DataInicial.TimeOfDay >= cs.DataFinal.TimeOfDay) || (consultaParametro.DataFinal.TimeOfDay <= cs.DataInicial.TimeOfDay));
-                        }
-                        else
-                        {
-                            if (consultaParametro.DataInicial.Date == cs.DataFinal.Date)
-                            {
-                                horarioVago = consultaParametro.DataInicial.TimeOfDay >= cs.DataFinal.TimeOfDay;
-                            }
-                            else
-                            {
-                                if (consultaParametro.DataFinal.Date == cs.DataInicial.Date)
-                                {
-                                    horarioVago = consultaParametro.DataFinal.TimeOfDay <= cs.DataInicial.TimeOfDay;
-                                }
-                                else
-                                {
-                                    horarioVago = false;
-                                }
-                            }
-                        }
+                        horarioVago = false;
                     }
                 }
                 if (horarioVago)
@@ -78,16 +55,59 @@ namespace AgendaConsultorio.Application.Service
             }
         }
 
-        public string DeletaConsultas(string pacienteParametro)
+        public string DeletaConsultas(DateTime dataInicialParametro)
         {
-            if (consultaRepository.BuscarPeloPaciente(pacienteParametro) != null)
+            if (consultaRepository.BuscarPelaDataInicial(dataInicialParametro) != null)
             {
-                consultaRepository.DeletarConsulta(consultaRepository.BuscarPeloPaciente(pacienteParametro));
+                consultaRepository.DeletarConsulta(consultaRepository.BuscarPelaDataInicial(dataInicialParametro));
                 return "Deletado com sucesso!";
             }
             else
             {
                 return "Consulta não existe na base de dados";
+            }
+        }
+
+        public string AtualizaConsultas(ConsultaViewModel[] consultaParametro)
+        {
+            if (consultaRepository.BuscarPelaDataInicial(consultaParametro[0].DataInicial) != null)
+            {
+                if (consultaParametro[1].DataInicial < consultaParametro[1].DataFinal)
+                {
+                    var listaConsulta = consultaRepository.ObterConsultas();
+                    bool horarioVago = true;
+                    foreach (var cs in listaConsulta)
+                    {
+                        if ((consultaParametro[1].DataInicial < cs.DataFinal) && (consultaParametro[1].DataFinal > cs.DataInicial))
+                        {
+                            horarioVago = false;
+                        }
+                    }
+                        
+                    if (horarioVago)
+                    {
+                        var consulta = consultaRepository.BuscarPelaDataInicial(consultaParametro[0].DataInicial);
+                        consulta.Paciente = consultaParametro[1].Paciente;
+                        consulta.DataNascimento = consultaParametro[1].DataNascimento;
+                        consulta.DataInicial = consultaParametro[1].DataInicial;
+                        consulta.DataFinal = consultaParametro[1].DataFinal;
+                        consulta.Observacoes = consultaParametro[1].Observacoes;
+                        consultaRepository.AtualizarConsulta(consulta);
+                        return "Atualizado com sucesso!";
+                    }
+                    else
+                    {
+                        return "Horário Indisponível";
+                    }
+                }
+                else
+                {
+                    return "Data final não pode ser menor do que a inicial";
+                }
+            }
+            else
+            { 
+                return "Estoque não existe na base de dados";
             }
         }
     }

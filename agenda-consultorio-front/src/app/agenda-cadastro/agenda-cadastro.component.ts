@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsultaService } from '../consulta.service';
 import { Consulta } from '../consulta.type';
-import { FormGroup, FormControl } from '@angular/forms';
 import { stringify } from '@angular/compiler/src/util';
+import { Validators } from '@angular/forms';
 
 
 
@@ -33,6 +33,7 @@ export class AgendaCadastroComponent implements OnInit {
 
   onClear(){
     this.service.form.reset();
+    this.service.inicializaFormGroup();
   }
 
   onSubmit(){
@@ -43,8 +44,9 @@ export class AgendaCadastroComponent implements OnInit {
         if(this.verificaSeHorarioEstaVago(dataDeInicio, dataDeTermino)){
           dataDeInicio = this.corrigeZonaHorariaProPost(dataDeInicio);
           dataDeTermino = this.corrigeZonaHorariaProPost(dataDeTermino);
-          this.service.postConsulta(this.criaObjetoProPost(dataDeInicio, dataDeTermino)).subscribe();
+          this.service.postConsulta(this.criaObjetoProPost(dataDeInicio, dataDeTermino)).subscribe(r => {console.log(r)});
           this.arrayLocalDeConsultas.push(this.criaObjetoProArrayLocal(dataDeInicio, dataDeTermino));
+          this.limparOsInputs();
         }
         else{
           console.log("Horário Indisponível");
@@ -76,10 +78,8 @@ export class AgendaCadastroComponent implements OnInit {
       var dataInicialAuxiliar = new Date(stringify(cs.dataInicial));    //variáveis auxiliares para usar o metodo getTime
       var dataFinalAuxiliar = new Date(stringify(cs.dataFinal));        //do tipo Date sem causar erros de execução.
       
-      if(((dataDeInicio.getTime() >= dataInicialAuxiliar.getTime())
-      && (dataDeInicio.getTime() < dataFinalAuxiliar.getTime()))      //Estrutura de Condição que verifica se a nova consulta
-      ||((dataDeTermino.getTime() > dataInicialAuxiliar.getTime())    //começa ou termina no range de duração das outras.
-      && (dataDeTermino.getTime() <= dataFinalAuxiliar.getTime()))){
+      if((dataDeInicio.getTime() < dataFinalAuxiliar.getTime())         //Estrutura de Condição que verifica se a nova consulta
+      && (dataDeTermino.getTime() > dataInicialAuxiliar.getTime())){    //começa ou termina no range de duração das outras.
         console.log(cs.paciente);
         console.log(dataDeInicio);
         console.log(dataDeTermino);
@@ -147,6 +147,37 @@ export class AgendaCadastroComponent implements OnInit {
     dataRetorno.setHours(dataRetorno.getUTCHours());
 
     return dataRetorno;
+  }
+
+  limparOsInputs(){
+    this.service.form.reset();
+    this.service.inicializaFormGroup();
+    this.resetarValidators('paciente');
+    this.resetarValidators('dataInicial');
+    this.resetarValidators('horaInicial');
+    this.resetarValidators('dataFinal');
+    this.resetarValidators('horaFinal'); 
+  }
+
+  resetarValidators(nomedoInput){
+    this.service.form.get(nomedoInput).clearValidators();
+    this.service.form.get(nomedoInput).updateValueAndValidity();
+    this.service.form.get(nomedoInput).setValidators(Validators.required);
+  }
+
+  aplicarValidacao(nomeDoInput){
+    this.service.form.get(nomeDoInput).updateValueAndValidity();
+  }
+
+  camposVazios(): boolean{
+    if(this.service.form.get('paciente').value=='' ||
+    this.service.form.get('dataInicial').value=='' ||
+    this.service.form.get('horaInicial').value=='' ||
+    this.service.form.get('dataFinal').value=='' ||
+    this.service.form.get('horaFinal').value==''){
+      return true;
+    }
+    return false;
   }
 
 }

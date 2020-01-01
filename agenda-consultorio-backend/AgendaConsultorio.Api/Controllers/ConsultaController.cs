@@ -10,6 +10,7 @@ using FromBodyAttribute = Microsoft.AspNetCore.Mvc.FromBodyAttribute;
 using HttpDeleteAttribute = Microsoft.AspNetCore.Mvc.HttpDeleteAttribute;
 using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
 using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
+using HttpPutAttribute = Microsoft.AspNetCore.Mvc.HttpPutAttribute;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace AgendaConsultorio.Api.Controllers
@@ -37,10 +38,16 @@ namespace AgendaConsultorio.Api.Controllers
             return consultaService.InsereConsultas(consultaParametro);
         }
 
-        [HttpDelete("{pacienteParametro}")]
-        public string DeletaConsulta(string pacienteParametro)
+        [HttpDelete("{dataInicialParametro}")]
+        public string DeletaConsulta(DateTime dataInicialParametro)
                 {
-            return consultaService.DeletaConsultas(pacienteParametro);
+            return consultaService.DeletaConsultas(dataInicialParametro);
+        }
+
+        [HttpPut]
+        public string AtualizaConsulta([FromBody]ConsultaViewModel[] dataInicialParametro)
+        {
+            return consultaService.AtualizaConsultas(dataInicialParametro);
         }
 
     }
