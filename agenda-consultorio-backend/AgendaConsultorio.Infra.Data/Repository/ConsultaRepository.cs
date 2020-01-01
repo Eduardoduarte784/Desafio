@@ -21,9 +21,9 @@ namespace AgendaConsultorio.Infra.Data.Repository
             return listaConsulta;
         }
 
-        public Consulta BuscarPeloPaciente(string paciente)
+        public Consulta BuscarPelaDataInicial(DateTime dataInicialParametro)
         {
-            return this.context.Set<Consulta>().FirstOrDefault(x => x.Paciente == paciente);
+            return this.context.Set<Consulta>().FirstOrDefault(x => x.DataInicial == dataInicialParametro);
         }
 
         public void InserirConsulta(Consulta consultaParametro)
@@ -35,6 +35,12 @@ namespace AgendaConsultorio.Infra.Data.Repository
             public void DeletarConsulta(Consulta consultaParametro)
         {
             this.context.Set<Consulta>().Remove(consultaParametro);
+            this.context.SaveChanges();
+        }
+
+        public void AtualizarConsulta(Consulta consultaParametro)
+        {
+            this.context.Set<Consulta>().Update(consultaParametro);
             this.context.SaveChanges();
         }
     }

@@ -9,6 +9,7 @@ namespace AgendaConsultorio.Application.Service.Interface
     {
         public IEnumerable<ConsultaViewModel> getConsultas();
         public string InsereConsultas(ConsultaViewModel consultaParametro);
-        public string DeletaConsultas(string pacienteParametro);
+        public string DeletaConsultas(DateTime dataInicialParametro);
+        public string AtualizaConsultas(ConsultaViewModel[] consultaParametro);
     }
 }

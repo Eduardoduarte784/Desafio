@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { ConsultaService }from '../consulta.service';
-import { DataSource } from '@angular/cdk/table';
-import { Observable } from 'rxjs';
-import { Consulta } from '../consulta.type';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
 @Component({
@@ -36,9 +33,9 @@ export class AgendaConsultasComponent implements OnInit {
       });
   }
 
-  deletarConsulta(nome): void{
-        this.consultaService.deleteConsulta(nome).subscribe();
-        const itemIndex = this.dataSource.data.findIndex(obj => obj.paciente == nome);
+  deletarConsulta(data): void{
+        this.consultaService.deleteConsulta(data).subscribe(r => {console.log(r)});
+        const itemIndex = this.dataSource.data.findIndex(obj => obj.dataInicial == data);
         this.dataSource.data.splice(itemIndex, 1);
         this.dataSource._updateChangeSubscription();
   }

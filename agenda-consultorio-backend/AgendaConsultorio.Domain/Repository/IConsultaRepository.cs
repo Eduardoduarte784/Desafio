@@ -8,8 +8,9 @@ namespace AgendaConsultorio.Domain.Repository
     public interface IConsultaRepository
     {
         public IEnumerable<Consulta> ObterConsultas();
-        public Consulta BuscarPeloPaciente(string paciente);
+        public Consulta BuscarPelaDataInicial(DateTime dataInicialParametro);
         public void InserirConsulta(Consulta consultaParametro);
         public void DeletarConsulta(Consulta consultaParametro);
+        public void AtualizarConsulta(Consulta consultaParametro);
     }
 }
