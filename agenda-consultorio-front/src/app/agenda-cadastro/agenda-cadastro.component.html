@@ -1,27 +1,35 @@
-<h1>Agendamento de Consultas</h1>
+<div align="center">
+    
+    <span style="text-align: center; font-size: xx-large; font-weight: bold;">{{modoUpdate?"Editar Consulta":"Nova Consulta"}}  </span>
+    <button class="btn-dialog-close" mat-stroked-button *ngIf="!botaoFecharOculto" (click)="onClose()" tabIndex="-1">X</button>
+</div>
+
 <form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
     <mat-grid-list cols="2" rowHeight="300px">
         <mat-grid-tile>
             <div class = "controles-container">
                 <mat-form-field class="controles-container-full">
-                    <input formControlName="paciente" matInput placeholder="Paciente*" (blur)="aplicarValidacao('paciente')">
+                    <input formControlName="paciente" matInput placeholder="Paciente*" autocomplete="off" (blur)="aplicarValidacao('paciente')">
                     <mat-error>Este campo é obrigatório</mat-error>
                 </mat-form-field>
                 <mat-form-field class="controles-container-full">
-                    <input formControlName="dataNascimento" matInput placeholder="Data de Nascimento">
+                    <input formControlName="dataNascimento" matInput [matDatepicker]="picker" placeholder="Data de Nascimento" autocomplete="off" (blur)="aplicarValidacao('dataNascimento')">
+                    <mat-error *ngIf="service.form.controls['dataNascimento'].errors?.required">Este campo é obrigatório</mat-error>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field class="controles-container-full">
-                    <input formControlName="observacoes" matInput placeholder="Observações">
+                    <input formControlName="observacoes" matInput placeholder="Observações" autocomplete="off">
                 </mat-form-field>
             </div>
         </mat-grid-tile>
         <mat-grid-tile>
             <div class ="controles-container">
                 <mat-form-field class="controles-container-metade">
-                    <input formControlName="dataInicial" matInput [matDatepicker]="picker" placeholder="Data Inicial*" (blur)="aplicarValidacao('dataInicial')">
+                    <input formControlName="dataInicial" matInput [matDatepicker]="picker1" placeholder="Data Inicial*" autocomplete="off" (blur)="aplicarValidacao('dataInicial')">
                     <mat-error *ngIf="service.form.controls['dataInicial'].errors?.required">Este campo é obrigatório</mat-error>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field>
                     <input type="time" formControlName="horaInicial" matInput placeholder="Hora de Início*" (blur)="aplicarValidacao('horaInicial')">
@@ -29,10 +37,10 @@
                     <mat-error *ngIf="service.form.controls['horaInicial'].errors?.horainvalida">Hora Inválida</mat-error>
                 </mat-form-field>
                 <mat-form-field class="controles-container-metade">
-                    <input formControlName="dataFinal" matInput [matDatepicker]="picker1" placeholder="Data Final*" (blur)="aplicarValidacao('dataFinal')">
+                    <input formControlName="dataFinal" matInput [matDatepicker]="picker2" placeholder="Data Final*" autocomplete="off" (blur)="aplicarValidacao('dataFinal')">
                     <mat-error *ngIf="service.form.controls['dataFinal'].errors?.required">Este campo é obrigatório</mat-error>
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field>
                     <input type="time" formControlName="horaFinal" matInput placeholder="Hora de Término*" (blur)="aplicarValidacao('horaFinal')">

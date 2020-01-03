@@ -31,9 +31,8 @@ namespace AgendaConsultorio.Infra.Data.Migrations.Migrations
                     b.Property<DateTime>("DataInicial")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("DataNascimento")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Observacoes")
                         .HasColumnType("nvarchar(max)");

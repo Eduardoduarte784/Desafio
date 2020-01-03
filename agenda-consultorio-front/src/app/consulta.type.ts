@@ -1,6 +1,6 @@
 export interface Consulta{
 paciente: string;
-dataNascimento: string;
+dataNascimento: Date;
 dataInicial: Date;
 dataFinal: Date;
 observacoes: string;

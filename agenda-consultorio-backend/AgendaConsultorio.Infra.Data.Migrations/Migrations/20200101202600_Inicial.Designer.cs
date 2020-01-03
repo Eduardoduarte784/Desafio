@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgendaConsultorio.Infra.Data.Migrations.Migrations
 {
     [DbContext(typeof(AgendaConsultorioContext))]
-    [Migration("20191223165321_init")]
-    partial class init
+    [Migration("20200101202600_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,6 +26,15 @@ namespace AgendaConsultorio.Infra.Data.Migrations.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataFinal")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataInicial")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Observacoes")
                         .HasColumnType("nvarchar(max)");

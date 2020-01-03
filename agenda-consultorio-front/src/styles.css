@@ -42,7 +42,7 @@ mat-footer-row mat-footer-cell{
 }
 
 form.normal-form{
-    margin-left:13%;
+    margin-left:8%;
 }
 
 .controles-container{
@@ -60,4 +60,18 @@ form.normal-form{
 
 .button-row button{
     margin: 5px;
+}
+
+snack-bar-container.success{
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+snack-bar-container.notification simple-snack-bar{
+    font-size: 18px !important;
+    font-weight: bold;
+}
+
+.btn-dialog-close{
+    position: absolute;  left: 35%; bottom: 50%;
 }

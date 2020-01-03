@@ -4,6 +4,7 @@ import { AgendaCadastroComponent } from './agenda-cadastro/agenda-cadastro.compo
 import { AgendaConsultasComponent } from './agenda-consultas/agenda-consultas.component';
 
 
+
 const routes: Routes = [
   { path: '', component: AgendaConsultasComponent },
   { path: 'cadastro', component: AgendaCadastroComponent }

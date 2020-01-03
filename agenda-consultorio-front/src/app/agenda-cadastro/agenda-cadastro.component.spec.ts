@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AgendaCadastroComponent } from './agenda-cadastro.component';
 
-describe('AgendaComponent', () => {
+describe('AgendaCadastroComponent', () => {
   let component: AgendaCadastroComponent;
   let fixture: ComponentFixture<AgendaCadastroComponent>;
 
@@ -22,4 +22,5 @@ describe('AgendaComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

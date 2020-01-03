@@ -78,7 +78,9 @@ namespace AgendaConsultorio.Application.Service
                     bool horarioVago = true;
                     foreach (var cs in listaConsulta)
                     {
-                        if ((consultaParametro[1].DataInicial < cs.DataFinal) && (consultaParametro[1].DataFinal > cs.DataInicial))
+                        if ((consultaParametro[1].DataInicial < cs.DataFinal) &&
+                            (consultaParametro[1].DataFinal > cs.DataInicial) &&
+                            (cs.DataInicial != consultaParametro[0].DataInicial))
                         {
                             horarioVago = false;
                         }
