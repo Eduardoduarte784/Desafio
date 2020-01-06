@@ -7,6 +7,7 @@ import { AgendaCadastroComponent } from '../agenda-cadastro/agenda-cadastro.comp
 import { MatDialogRef } from '@angular/material';
 import { Consulta } from '../consulta.type';
 import { NotificationService } from '../notification.service';
+import { ConfirmationService } from '../confirmation.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class AgendaConsultasComponent implements OnInit {
   constructor(
     private consultaService: ConsultaService,
     private notificationService: NotificationService,
-    private dialog : MatDialog
+    private dialog : MatDialog,
+    private confirmationService: ConfirmationService
     ) { }
 
   displayedColumns = ['paciente', 'dataNascimento', 'dataInicial', 'dataFinal', 'observacoes', 'delete'];
@@ -46,12 +48,21 @@ export class AgendaConsultasComponent implements OnInit {
   }
 
   deletarConsulta(data): void{
-    if(confirm('Tem certeza que deseja apagar esse registro?')){
-      this.consultaService.deleteConsulta(data).subscribe(r => {this.notificationService.deleted(r)});
-      const itemIndex = this.dataSource.data.findIndex(obj => obj.dataInicial == data);
-      this.dataSource.data.splice(itemIndex, 1);
-      this.dataSource._updateChangeSubscription();
-    }
+//    if(confirm('Tem certeza que deseja apagar esse registro?')){
+ //     this.consultaService.deleteConsulta(data).subscribe(r => {this.notificationService.deleted(r)});
+//      const itemIndex = this.dataSource.data.findIndex(obj => obj.dataInicial == data);
+ //     this.dataSource.data.splice(itemIndex, 1);
+//      this.dataSource._updateChangeSubscription();
+ //   }
+    this.confirmationService.abrirCaixaDeConfirmacao('Tem certeza que deseja apagar esse registro?')
+    .afterClosed().subscribe(res => {
+      if(res){
+        this.consultaService.deleteConsulta(data).subscribe(r => {this.notificationService.deleted(r)});
+        const itemIndex = this.dataSource.data.findIndex(obj => obj.dataInicial == data);
+        this.dataSource.data.splice(itemIndex, 1);
+        this.dataSource._updateChangeSubscription();
+      }
+    });
   }
 
   isEmpty(dataSource): boolean{

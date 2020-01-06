@@ -11,12 +11,14 @@ import { AgendaCadastroComponent } from './agenda-cadastro/agenda-cadastro.compo
 import { AgendaConsultasComponent } from './agenda-consultas/agenda-consultas.component';
 import { ConsultaService } from './consulta.service';
 import { MAT_DATE_LOCALE, MatDialogRef } from '@angular/material';
+import { CaixaConfirmacaoComponent } from './caixa-confirmacao/caixa-confirmacao.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AgendaCadastroComponent,
-    AgendaConsultasComponent
+    AgendaConsultasComponent,
+    CaixaConfirmacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,6 @@ import { MAT_DATE_LOCALE, MatDialogRef } from '@angular/material';
     useValue: {}
   },{provide: MAT_DATE_LOCALE, useValue: 'pt-Br'},ConsultaService],
   bootstrap: [AppComponent],
-  entryComponents: [AgendaCadastroComponent]
+  entryComponents: [AgendaCadastroComponent, CaixaConfirmacaoComponent]
 })
 export class AppModule { }
