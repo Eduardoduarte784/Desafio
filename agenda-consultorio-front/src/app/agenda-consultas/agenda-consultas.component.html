@@ -1,11 +1,11 @@
-   <h2>Agendamento de Consulta</h2>
+   <h2>Agenda de Compromissos</h2>
     
     <mat-card-content>  
-            <button mat-raised-button color="primary">
+            <button mat-raised-button color="primary" (click)='onCreate()'>
                 <mat-icon>add</mat-icon> Agendar
             </button>
             <mat-form-field class="search-form-field" floatLabel="never">
-                <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+                <input matInput [(ngModel)]="searchKey" placeholder="Pesquisar" autocomplete="off" (keyup)="applyFilter()">
                 <button mat-button matSuffix mat-icon-button aria-label="clear" *ngIf="searchKey" (click)="onSearchClear()">
                     <mat-icon>close</mat-icon>
                 </button>
@@ -13,13 +13,13 @@
     <br><br>
         <div class="example-container mat-elevation-z8">
             <mat-table #table [dataSource]="dataSource" matSort>
-                <ng-container matColumnDef="paciente">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Paciente </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.paciente}} </mat-cell>
+                <ng-container style="min-width: 250px;" matColumnDef="paciente">
+                    <mat-header-cell style="min-width: 250px;" *matHeaderCellDef mat-sort-header> Paciente </mat-header-cell>
+                    <mat-cell style="min-width: 250px;" *matCellDef="let element"> {{element.paciente}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="dataNascimento">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Data Nascimento </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.dataNascimento}} </mat-cell>
+                    <mat-header-cell style="margin-left: 10px;" *matHeaderCellDef mat-sort-header> Data de Nascimento </mat-header-cell>
+                    <mat-cell style="margin-left: 10px;" *matCellDef="let element"> {{element.dataNascimento | date: 'dd/MM/yyyy'}} </mat-cell>
                 </ng-container>
                 <ng-container  matColumnDef="dataInicial">
                     <mat-header-cell  *matHeaderCellDef mat-sort-header> Data Inicial </mat-header-cell>
@@ -33,9 +33,12 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Observações </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.observacoes}} </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="delete">
-                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                    <mat-cell *matCellDef="let element">
+                <ng-container style="max-width: 75px;" matColumnDef="delete">
+                    <mat-header-cell style="max-width: 75px;" *matHeaderCellDef></mat-header-cell>
+                    <mat-cell style="max-width: 75px;" *matCellDef="let element">
+                        <button mat-icon-button color="primary" (click)="onUpdate(element)">
+                            <mat-icon class="icon">edit</mat-icon>
+                        </button>
                         <button mat-icon-button color="warn" (click)="deletarConsulta(element.dataInicial)">
                             <mat-icon class="icon">delete_outline</mat-icon>
                         </button>

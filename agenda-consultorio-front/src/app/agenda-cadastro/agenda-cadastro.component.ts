@@ -3,7 +3,8 @@ import { ConsultaService } from '../consulta.service';
 import { Consulta } from '../consulta.type';
 import { stringify } from '@angular/compiler/src/util';
 import { Validators } from '@angular/forms';
-
+import { NotificationService } from '../notification.service';
+import { MatDialogRef } from '@angular/material';
 
 
 @Component({
@@ -14,13 +15,30 @@ import { Validators } from '@angular/forms';
 export class AgendaCadastroComponent implements OnInit {
 
   arrayLocalDeConsultas : Consulta[] = {} as Consulta[];
+  modoUpdate: boolean = false;
+  objetoAntesDoUpdate: Consulta = {} as Consulta;
+  botaoFecharOculto: boolean = true;
 
   constructor(                                              
-    private service: ConsultaService
+    private service: ConsultaService,
+    private notificationService: NotificationService,
+    public dialogRef: MatDialogRef<AgendaCadastroComponent>
   ) { }
   
   ngOnInit() {
     this.obterTodasConsultas();
+    try{
+      this.dialogRef.afterOpened().subscribe(result => {
+        this.botaoFecharOculto = false;
+        if(this.service.form.get('paciente').value !=''){
+          this.modoUpdate = true;
+          var dataDeInicio: Date = this.criaDataAPartirDosInputs("dataInicial","horaInicial");
+          var dataDeTermino: Date = this.criaDataAPartirDosInputs("dataFinal","horaFinal");
+          var dataDeNascimento: Date = this.service.form.get('dataNascimento').value;
+          this.objetoAntesDoUpdate = this.criaObjetoProServidor(dataDeInicio, dataDeTermino, dataDeNascimento);
+        }
+      });
+    }catch(error){}
   }
 
   obterTodasConsultas(): void {
@@ -29,6 +47,13 @@ export class AgendaCadastroComponent implements OnInit {
         let array = list.map(item => item);               //usado para a validação do range de datas. Validação essa que
         this.arrayLocalDeConsultas = array;               //será realizada novamente no backend.
       });
+  }
+
+  onClose(){
+    if(this.dialogRef.getState() == 0){
+      this.limparOsInputs();
+      this.dialogRef.close('sem resultado');
+    }
   }
 
   onClear(){
@@ -42,17 +67,37 @@ export class AgendaCadastroComponent implements OnInit {
       var dataDeTermino: Date = this.criaDataAPartirDosInputs("dataFinal","horaFinal");
       if(dataDeTermino.getTime() > dataDeInicio.getTime()) {
         if(this.verificaSeHorarioEstaVago(dataDeInicio, dataDeTermino)){
-          dataDeInicio = this.corrigeZonaHorariaProPost(dataDeInicio);
-          dataDeTermino = this.corrigeZonaHorariaProPost(dataDeTermino);
-          this.service.postConsulta(this.criaObjetoProPost(dataDeInicio, dataDeTermino)).subscribe(r => {console.log(r)});
-          this.arrayLocalDeConsultas.push(this.criaObjetoProArrayLocal(dataDeInicio, dataDeTermino));
-          this.limparOsInputs();
+          dataDeInicio = this.corrigeZonaHorariaProServidor(dataDeInicio);
+          dataDeTermino = this.corrigeZonaHorariaProServidor(dataDeTermino);
+          var dataDeNascimento = this.corrigeZonaHorariaProServidor(this.service.form.get("dataNascimento").value);
+          if(!this.modoUpdate){                                        //se o formulário estiver realizando um post
+            this.service.postConsulta(this.criaObjetoProServidor(dataDeInicio, dataDeTermino, dataDeNascimento)).subscribe(r => {
+              this.notificationService.success(r)
+            });
+            var consulta = this.criaObjetoProArrayLocal(dataDeInicio, dataDeTermino);
+            this.arrayLocalDeConsultas.push(consulta);
+          }
+          else{                                                        //se o formulário estiver realizando um put
+            this.objetoAntesDoUpdate.dataInicial = this.corrigeZonaHorariaProServidor(this.objetoAntesDoUpdate.dataInicial);
+            this.objetoAntesDoUpdate.dataFinal = this.corrigeZonaHorariaProServidor(this.objetoAntesDoUpdate.dataFinal);
+            var consultaArray: Consulta[] = [this.objetoAntesDoUpdate, this.criaObjetoProServidor(dataDeInicio, dataDeTermino, dataDeNascimento)];
+            this.service.putConsulta(consultaArray).subscribe(r => {
+              this.notificationService.success(r)
+            });
+            var consulta = this.criaObjetoProArrayLocal(dataDeInicio, dataDeTermino);
+            const index = this.arrayLocalDeConsultas.findIndex(obj => obj.dataInicial == this.objetoAntesDoUpdate.dataInicial);
+            this.arrayLocalDeConsultas.splice(index, 1, this.objetoAntesDoUpdate);
+          }
+          try{
+            this.limparOsInputs();
+            this.dialogRef.close(consulta);
+          }catch(erro){}
         }
         else{
-          console.log("Horário Indisponível");
+          this.notificationService.fail("Horário Indisponível");
         }
       }else{
-        console.log("Data Final não pode ser menor do que a Inicial")
+        this.notificationService.fail("Data Final não pode ser menor do que a Inicial");
       } 
     }
   }
@@ -60,9 +105,9 @@ export class AgendaCadastroComponent implements OnInit {
   criaDataAPartirDosInputs(nomeDoDataInput: string, nomeDoHoraInput: string): Date{
     var data: Date = new Date(stringify(this.service.form.get(nomeDoDataInput).value));  //recebe a data do Datepicker.
     var horaEMinuto: string = this.service.form.get(nomeDoHoraInput).value;       //recebe as horas e minutos do input.
-    var dia: string = stringify(data.getUTCDate());
-    var mes: string = stringify(data.getUTCMonth()+1);        //divide a data do Datepicker em partes para posterior
-    var ano: string = stringify(data.getUTCFullYear());       //junção com a hora.
+    var dia: string = stringify(data.getDate());
+    var mes: string = stringify(data.getMonth()+1);        //divide a data do Datepicker em partes para posterior
+    var ano: string = stringify(data.getFullYear());       //junção com a hora.
     if(Number(dia) < 10){
       dia = "0" + dia;                  //caso o dia tenha apenas um digito adiciona um 0 na frente.
     }
@@ -78,23 +123,21 @@ export class AgendaCadastroComponent implements OnInit {
       var dataInicialAuxiliar = new Date(stringify(cs.dataInicial));    //variáveis auxiliares para usar o metodo getTime
       var dataFinalAuxiliar = new Date(stringify(cs.dataFinal));        //do tipo Date sem causar erros de execução.
       
-      if((dataDeInicio.getTime() < dataFinalAuxiliar.getTime())         //Estrutura de Condição que verifica se a nova consulta
-      && (dataDeTermino.getTime() > dataInicialAuxiliar.getTime())){    //começa ou termina no range de duração das outras.
-        console.log(cs.paciente);
-        console.log(dataDeInicio);
-        console.log(dataDeTermino);
-        console.log(dataInicialAuxiliar);
-        console.log(dataFinalAuxiliar);
-        return false;
-      }
-    }
-    return true;
+      if((dataDeInicio.getTime() < dataFinalAuxiliar.getTime()) &&      //Estrutura de Condição que verifica se a nova consulta
+      (dataDeTermino.getTime() > dataInicialAuxiliar.getTime())){       //começa ou termina no range de duração das outras.
+        if(!((this.modoUpdate) &&
+        (dataInicialAuxiliar.getTime() == this.objetoAntesDoUpdate.dataInicial.getTime()))){      //Estrutura de condição
+          return false;                                                                           //que evita que uma consulta
+        }                                                                                         //venha a dar choque de
+      }                                                                                           //horário consigo mesma
+    }                                                                                             //ao tentar atualizar
+    return true;       
   }
 
-  criaObjetoProPost(dataDeInicio: Date, dataDeTermino: Date): Consulta{
+  criaObjetoProServidor(dataDeInicio: Date, dataDeTermino: Date, dataDeNascimento): Consulta{
     var consulta: Consulta = {} as Consulta;
     consulta.paciente = this.service.form.get("paciente").value;;
-    consulta.dataNascimento = this.service.form.get("dataNascimento").value;
+    consulta.dataNascimento = dataDeNascimento;
     consulta.dataInicial = dataDeInicio;
     consulta.dataFinal = dataDeTermino;
     consulta.observacoes = this.service.form.get("observacoes").value;
@@ -106,14 +149,14 @@ export class AgendaCadastroComponent implements OnInit {
     dataDeInicio = this.corrigeZonaHorariaProArrayLocal(dataDeInicio);
     dataDeTermino = this.corrigeZonaHorariaProArrayLocal(dataDeTermino);
     consulta.paciente = this.service.form.get("paciente").value;;
-    consulta.dataNascimento = this.service.form.get("dataNascimento").value;
+    consulta.dataNascimento = this.corrigeZonaHorariaProArrayLocal(this.service.form.get("dataNascimento").value);
     consulta.dataInicial = dataDeInicio;
     consulta.dataFinal = dataDeTermino;
     consulta.observacoes = this.service.form.get("observacoes").value;
     return consulta;
   }
 
-  corrigeZonaHorariaProPost(dataParametro): Date{
+  corrigeZonaHorariaProServidor(dataParametro): Date{
     var dataRetorno : Date = dataParametro;
     if (dataRetorno.getHours() > dataRetorno.getUTCHours()) {
         if (dataRetorno.getDate() > dataRetorno.getUTCDate()) {
@@ -153,6 +196,7 @@ export class AgendaCadastroComponent implements OnInit {
     this.service.form.reset();
     this.service.inicializaFormGroup();
     this.resetarValidators('paciente');
+    this.resetarValidators('dataNascimento');
     this.resetarValidators('dataInicial');
     this.resetarValidators('horaInicial');
     this.resetarValidators('dataFinal');
@@ -171,6 +215,7 @@ export class AgendaCadastroComponent implements OnInit {
 
   camposVazios(): boolean{
     if(this.service.form.get('paciente').value=='' ||
+    this.service.form.get('dataNascimento').value=='' ||
     this.service.form.get('dataInicial').value=='' ||
     this.service.form.get('horaInicial').value=='' ||
     this.service.form.get('dataFinal').value=='' ||

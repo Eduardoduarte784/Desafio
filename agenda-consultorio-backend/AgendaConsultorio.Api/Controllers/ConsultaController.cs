@@ -40,7 +40,7 @@ namespace AgendaConsultorio.Api.Controllers
 
         [HttpDelete("{dataInicialParametro}")]
         public string DeletaConsulta(DateTime dataInicialParametro)
-                {
+        {
             return consultaService.DeletaConsultas(dataInicialParametro);
         }
 
