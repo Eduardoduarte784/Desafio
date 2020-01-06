@@ -48,6 +48,7 @@ form.normal-form{
 .controles-container{
     width: 100%;
     padding: 5%;
+    margin-top: 2%;
 }
 
 .controles-container-full{
@@ -55,7 +56,12 @@ form.normal-form{
 }
 
 .controles-container-metade{
+    width: 45%;
     margin-right: 10px;
+}
+
+.controles-container-hora{
+    width: 27%;
 }
 
 .button-row button{
@@ -67,11 +73,27 @@ snack-bar-container.success{
     color: #fff;
 }
 
+snack-bar-container.fail{
+    background-color: #f00855;
+    color: #fff;
+}
+
+snack-bar-container.deleted{
+    background-color: orange;
+    color: #fff;
+}
+
 snack-bar-container.notification simple-snack-bar{
     font-size: 18px !important;
     font-weight: bold;
 }
 
 .btn-dialog-close{
-    position: absolute;  left: 35%; bottom: 50%;
+    position: absolute;  left: 70%; bottom: 74%;
+}
+
+.titulo{
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
 }

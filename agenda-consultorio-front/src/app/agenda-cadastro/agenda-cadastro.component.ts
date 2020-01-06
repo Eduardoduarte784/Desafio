@@ -5,7 +5,6 @@ import { stringify } from '@angular/compiler/src/util';
 import { Validators } from '@angular/forms';
 import { NotificationService } from '../notification.service';
 import { MatDialogRef } from '@angular/material';
-import { MaterialModule } from '../material.module';
 
 
 @Component({
@@ -33,14 +32,10 @@ export class AgendaCadastroComponent implements OnInit {
         this.botaoFecharOculto = false;
         if(this.service.form.get('paciente').value !=''){
           this.modoUpdate = true;
-          console.log(this.service.form.get('dataInicial').value);
           var dataDeInicio: Date = this.criaDataAPartirDosInputs("dataInicial","horaInicial");
           var dataDeTermino: Date = this.criaDataAPartirDosInputs("dataFinal","horaFinal");
           var dataDeNascimento: Date = this.service.form.get('dataNascimento').value;
-          console.log(dataDeInicio);
           this.objetoAntesDoUpdate = this.criaObjetoProServidor(dataDeInicio, dataDeTermino, dataDeNascimento);
-          console.log(this.modoUpdate);
-          console.log(this.objetoAntesDoUpdate);
         }
       });
     }catch(error){}
@@ -96,15 +91,13 @@ export class AgendaCadastroComponent implements OnInit {
           try{
             this.limparOsInputs();
             this.dialogRef.close(consulta);
-          }catch(erro){
-            console.log(erro);
-          }
+          }catch(erro){}
         }
         else{
-          console.log("Horário Indisponível");
+          this.notificationService.fail("Horário Indisponível");
         }
       }else{
-        console.log("Data Final não pode ser menor do que a Inicial")
+        this.notificationService.fail("Data Final não pode ser menor do que a Inicial");
       } 
     }
   }
@@ -134,16 +127,11 @@ export class AgendaCadastroComponent implements OnInit {
       (dataDeTermino.getTime() > dataInicialAuxiliar.getTime())){       //começa ou termina no range de duração das outras.
         if(!((this.modoUpdate) &&
         (dataInicialAuxiliar.getTime() == this.objetoAntesDoUpdate.dataInicial.getTime()))){      //Estrutura de condição
-          console.log(cs.paciente);                                                               //que evita que uma consulta
-          console.log(dataDeInicio);                                                              //venha a dar choque de
-          console.log(dataDeTermino);                                                             //horário consigo mesma
-          console.log(dataInicialAuxiliar);                                                       //ao tentar atualizar
-          console.log(dataFinalAuxiliar);
-          return false;
-        }
-      }
-    }
-    return true;
+          return false;                                                                           //que evita que uma consulta
+        }                                                                                         //venha a dar choque de
+      }                                                                                           //horário consigo mesma
+    }                                                                                             //ao tentar atualizar
+    return true;       
   }
 
   criaObjetoProServidor(dataDeInicio: Date, dataDeTermino: Date, dataDeNascimento): Consulta{

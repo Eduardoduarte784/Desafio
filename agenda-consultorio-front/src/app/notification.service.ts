@@ -20,4 +20,14 @@ export class NotificationService {
     this.config['panelClass'] = ['notification', 'success'];
     this.snackBar.open(msg, '', this.config);
   }
+    
+  fail(msg){
+    this.config['panelClass'] = ['notification', 'fail'];
+    this.snackBar.open(msg, '', this.config);
+  }
+
+  deleted(msg){
+    this.config['panelClass'] = ['notification', 'deleted'];
+    this.snackBar.open(msg, '', this.config);
+  }
 }

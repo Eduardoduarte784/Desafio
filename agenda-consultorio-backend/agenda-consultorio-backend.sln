@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaConsultorio.Infra.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgendaConsultorio.Infra.Data.Migrations", "AgendaConsultorio.Infra.Data.Migrations\AgendaConsultorio.Infra.Data.Migrations.csproj", "{97DC644F-F625-4DCB-8A74-77BD07CAD9B5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Testes", "4 - Testes", "{6B219416-2DAB-4EC2-92E7-DAC0D4267C71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaConsultorio.Testes", "agendaConsultorio.Testes\AgendaConsultorio.Testes.csproj", "{B8AC370A-2790-4BC8-9A19-C5AA53BACB37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{97DC644F-F625-4DCB-8A74-77BD07CAD9B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97DC644F-F625-4DCB-8A74-77BD07CAD9B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97DC644F-F625-4DCB-8A74-77BD07CAD9B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8AC370A-2790-4BC8-9A19-C5AA53BACB37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8AC370A-2790-4BC8-9A19-C5AA53BACB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8AC370A-2790-4BC8-9A19-C5AA53BACB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8AC370A-2790-4BC8-9A19-C5AA53BACB37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +68,7 @@ Global
 		{6E0E59C7-5228-4198-A022-023279F6720E} = {C7395316-A781-445C-8315-2F6113F57536}
 		{F33B2FFF-E4B9-4C5C-915F-176A01F43726} = {33ECF2C7-AD38-46B1-B74F-93D40E956F55}
 		{97DC644F-F625-4DCB-8A74-77BD07CAD9B5} = {33ECF2C7-AD38-46B1-B74F-93D40E956F55}
+		{B8AC370A-2790-4BC8-9A19-C5AA53BACB37} = {6B219416-2DAB-4EC2-92E7-DAC0D4267C71}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93EBBFD0-4594-4130-B1A1-B6ECF7D9A46E}

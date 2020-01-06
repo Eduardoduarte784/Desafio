@@ -6,23 +6,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AgendaCadastroComponent } from '../agenda-cadastro/agenda-cadastro.component';
 import { MatDialogRef } from '@angular/material';
 import { Consulta } from '../consulta.type';
-import {
-  MatToolbarModule,
-  MatIconModule,
-  MatSidenavModule,
-  MatListModule,
-  MatCardModule,
-  MatTableModule,
-  MatButtonModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatGridListModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatSnackBarModule,
-  MatDialogModule } from  '@angular/material';
+import { NotificationService } from '../notification.service';
+
 
 @Component({
   selector: 'app-agenda-consultas',
@@ -35,6 +20,7 @@ export class AgendaConsultasComponent implements OnInit {
 
   constructor(
     private consultaService: ConsultaService,
+    private notificationService: NotificationService,
     private dialog : MatDialog
     ) { }
 
@@ -45,7 +31,6 @@ export class AgendaConsultasComponent implements OnInit {
   searchKey: string;
   
   
-
   ngOnInit() {
     this.obterTodasConsultas();
   }
@@ -61,10 +46,12 @@ export class AgendaConsultasComponent implements OnInit {
   }
 
   deletarConsulta(data): void{
-    this.consultaService.deleteConsulta(data).subscribe(r => {console.log(r)});
-    const itemIndex = this.dataSource.data.findIndex(obj => obj.dataInicial == data);
-    this.dataSource.data.splice(itemIndex, 1);
-    this.dataSource._updateChangeSubscription();
+    if(confirm('Tem certeza que deseja apagar esse registro?')){
+      this.consultaService.deleteConsulta(data).subscribe(r => {this.notificationService.deleted(r)});
+      const itemIndex = this.dataSource.data.findIndex(obj => obj.dataInicial == data);
+      this.dataSource.data.splice(itemIndex, 1);
+      this.dataSource._updateChangeSubscription();
+    }
   }
 
   isEmpty(dataSource): boolean{
@@ -81,12 +68,12 @@ export class AgendaConsultasComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '80%';
+    dialogConfig.width = '52%';
     try {
     this.dialogRef = this.dialog.open(AgendaCadastroComponent, dialogConfig);
     this.dialogRef.afterClosed().subscribe(result => {
       if(result != 'sem resultado'){
-        console.log(result);
+        result.dataInicial = result.dataInicial.toJSON();
         this.dataSource.data.push(result);
         this.dataSource._updateChangeSubscription();
       }
@@ -101,12 +88,12 @@ export class AgendaConsultasComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '80%';
+    dialogConfig.width = '52%';
     try {
     this.dialogRef = this.dialog.open(AgendaCadastroComponent, dialogConfig);
     this.dialogRef.afterClosed().subscribe(result => {
       if(result != 'sem resultado'){
-        console.log(result);
+        result.dataInicial = result.dataInicial.toJSON();
         const itemIndex = this.dataSource.data.findIndex(obj => obj.dataInicial == consulta.dataInicial);
         this.dataSource.data.splice(itemIndex, 1, result);
         this.dataSource._updateChangeSubscription();

@@ -10,8 +10,6 @@ import { stringify } from '@angular/compiler/src/util';
 })
 export class ConsultaService {
   applicationUrl = 'http://localhost:5000';
-  inicioprop: Date = new Date("December 17, 1995 03:24:00");
-  finalprop: Date = new Date("December 17, 1995 03:24:00");
   
 
   constructor(
@@ -32,7 +30,7 @@ export class ConsultaService {
     return this.httpClient.get<Consulta[]>(`${this.applicationUrl}/api/Consulta`);
   }
 
-  deleteConsulta(dataInicial: string): Observable<string> {
+  deleteConsulta(dataInicial): Observable<string> {
     return this.httpClient.delete(`${this.applicationUrl}/api/Consulta/${dataInicial}`, {responseType:'text'});
   }
 

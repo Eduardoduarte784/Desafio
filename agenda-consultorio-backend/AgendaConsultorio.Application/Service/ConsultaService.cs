@@ -109,7 +109,7 @@ namespace AgendaConsultorio.Application.Service
             }
             else
             { 
-                return "Estoque não existe na base de dados";
+                return "Registro não existe na base de dados";
             }
         }
     }
